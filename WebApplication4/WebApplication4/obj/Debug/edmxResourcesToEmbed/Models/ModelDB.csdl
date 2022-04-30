@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB03Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cevap">
+    <Key>
+      <PropertyRef Name="CevapId" />
+    </Key>
+    <Property Name="CevapId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CevapNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kayit" Relationship="Self.FK_Kayit_ToCevap" FromRole="Cevap" ToRole="Kayit" />
+  </EntityType>
+  <EntityType Name="Ders">
+    <Key>
+      <PropertyRef Name="DersId" />
+    </Key>
+    <Property Name="DersId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Derskodu" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DersAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kayit" Relationship="Self.FK_Kayit_ToDers" FromRole="Ders" ToRole="Kayit" />
+  </EntityType>
+  <EntityType Name="Kayit">
+    <Key>
+      <PropertyRef Name="kayitId" />
+    </Key>
+    <Property Name="kayitId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kayitSoruId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kayitDersId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kayitCevapId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cevap" Relationship="Self.FK_Kayit_ToCevap" FromRole="Kayit" ToRole="Cevap" />
+    <NavigationProperty Name="Ders" Relationship="Self.FK_Kayit_ToDers" FromRole="Kayit" ToRole="Ders" />
+    <NavigationProperty Name="Soru" Relationship="Self.FK_Kayit_ToSoru" FromRole="Kayit" ToRole="Soru" />
+  </EntityType>
+  <EntityType Name="Soru">
+    <Key>
+      <PropertyRef Name="SoruId" />
+    </Key>
+    <Property Name="SoruId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SoruNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kayit" Relationship="Self.FK_Kayit_ToSoru" FromRole="Soru" ToRole="Kayit" />
+  </EntityType>
+  <Association Name="FK_Kayit_ToCevap">
+    <End Role="Cevap" Type="Self.Cevap" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cevap">
+        <PropertyRef Name="CevapId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitCevapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayit_ToDers">
+    <End Role="Ders" Type="Self.Ders" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ders">
+        <PropertyRef Name="DersId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitDersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayit_ToSoru">
+    <End Role="Soru" Type="Self.Soru" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Soru">
+        <PropertyRef Name="SoruId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitSoruId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB03Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cevap" EntityType="Self.Cevap" />
+    <EntitySet Name="Ders" EntityType="Self.Ders" />
+    <EntitySet Name="Kayit" EntityType="Self.Kayit" />
+    <EntitySet Name="Soru" EntityType="Self.Soru" />
+    <AssociationSet Name="FK_Kayit_ToCevap" Association="Self.FK_Kayit_ToCevap">
+      <End Role="Cevap" EntitySet="Cevap" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayit_ToDers" Association="Self.FK_Kayit_ToDers">
+      <End Role="Ders" EntitySet="Ders" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayit_ToSoru" Association="Self.FK_Kayit_ToSoru">
+      <End Role="Soru" EntitySet="Soru" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

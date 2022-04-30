@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB03ModelStoreContainer" CdmEntityContainer="DB03Entities">
+    <EntitySetMapping Name="Cevap">
+      <EntityTypeMapping TypeName="DB03Model.Cevap">
+        <MappingFragment StoreEntitySet="Cevap">
+          <ScalarProperty Name="CevapId" ColumnName="CevapId" />
+          <ScalarProperty Name="CevapNo" ColumnName="CevapNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ders">
+      <EntityTypeMapping TypeName="DB03Model.Ders">
+        <MappingFragment StoreEntitySet="Ders">
+          <ScalarProperty Name="DersId" ColumnName="DersId" />
+          <ScalarProperty Name="Derskodu" ColumnName="Derskodu" />
+          <ScalarProperty Name="DersAdi" ColumnName="DersAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kayit">
+      <EntityTypeMapping TypeName="DB03Model.Kayit">
+        <MappingFragment StoreEntitySet="Kayit">
+          <ScalarProperty Name="kayitId" ColumnName="kayitId" />
+          <ScalarProperty Name="kayitSoruId" ColumnName="kayitSoruId" />
+          <ScalarProperty Name="kayitDersId" ColumnName="kayitDersId" />
+          <ScalarProperty Name="kayitCevapId" ColumnName="kayitCevapId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Soru">
+      <EntityTypeMapping TypeName="DB03Model.Soru">
+        <MappingFragment StoreEntitySet="Soru">
+          <ScalarProperty Name="SoruId" ColumnName="SoruId" />
+          <ScalarProperty Name="SoruNo" ColumnName="SoruNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
